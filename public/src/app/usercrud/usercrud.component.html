@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-12"> 
+
+      
+    <mat-card class="centerDiv" >
+      <div class="container">
+        <div class="row">
+            <div class="col card-header1">
+                <input matInput placeholder="Search"   (keyup)="doFilter($event.target.value)" >
+              </div>
+              <div style="margin-top: -53px;float:right">
+                  <button mat-raised-button   type="submit" (click)="addUserDialog()" > Add user</button>
+              </div>
+
+            
+           
+            <mat-table #table1 [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="name" >
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Name</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <mat-header-cell *matHeaderCellDef > Email</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.email }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="phone">
+                    <mat-header-cell *matHeaderCellDef > Phone</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{ element.phone }} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="edit">
+                    <mat-header-cell *matHeaderCellDef > Edit </mat-header-cell>
+                    <mat-cell *matCellDef="let element">                          
+                     <button mat-icon-button><mat-icon matTooltip="Edit"  (click)="editUserDialog(element.uid,element.name,element.email,element.phone)"  >create</mat-icon></button>      
+                    
+
+                     </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="delete">
+                    <mat-header-cell *matHeaderCellDef > Delete </mat-header-cell>
+                    <mat-cell *matCellDef="let element">                              
+                     <button mat-icon-button><mat-icon matTooltip="Delete"  (click)="deleteUserDialog(element.uid)" >delete</mat-icon></button>
+                     </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="dispalyedColumns" > </mat-header-row>
+                <mat-row *matRowDef="let row;columns: dispalyedColumns"> </mat-row>
+            </mat-table>
+            <mat-paginator #page1 [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+              </mat-paginator>
+
+
+
+        </div>
+      </div>
+    </mat-card>
+    
+  </div> <!-- End of the Column -->
+</div> <!-- End of the Row -->
